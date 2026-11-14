@@ -14,7 +14,7 @@ struct ClearChatButton: View {
         .confirmationDialog("Clear all messages?", isPresented: $showConfirm, titleVisibility: .visible) {
             Button("Delete All", role: .destructive) {
                 do {
-                    try WellbeingResponse.deleteAll(in: modelContext)
+                    try ChatMessage.deleteAll(in: modelContext)
                 } catch {
                     // You can replace this with an alert or error handling as needed
                     print("Failed to clear chat: \(error)")

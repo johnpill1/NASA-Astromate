@@ -28,4 +28,15 @@ class WellbeingResponse {
         self.response = response
         self.sentimentScore = sentimentScore
     }
+
+    // MARK: - Utilities
+    @MainActor
+    static func deleteAll(in context: ModelContext) throws {
+        let descriptor = FetchDescriptor<WellbeingResponse>()
+        let all = try context.fetch(descriptor)
+        for item in all {
+            context.delete(item)
+        }
+        try context.save()
+    }
 }
